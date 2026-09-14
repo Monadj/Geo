@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D0F572D13057E590008AB4ED /* CalcuN2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalcuN2.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0F572E03057E591008AB4ED /* CalcuN2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalcuN2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0F572EA3057E591008AB4ED /* CalcuN2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalcuN2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0F572D13057E590008AB4ED /* Lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0F572E03057E591008AB4ED /* Lab1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lab1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0F572EA3057E591008AB4ED /* Lab1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lab1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,9 +85,9 @@
 		D0F572D23057E590008AB4ED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D0F572D13057E590008AB4ED /* CalcuN2.app */,
-				D0F572E03057E591008AB4ED /* CalcuN2Tests.xctest */,
-				D0F572EA3057E591008AB4ED /* CalcuN2UITests.xctest */,
+				D0F572D13057E590008AB4ED /* Lab1.app */,
+				D0F572E03057E591008AB4ED /* Lab1Tests.xctest */,
+				D0F572EA3057E591008AB4ED /* Lab1UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D0F572D03057E590008AB4ED /* CalcuN2 */ = {
+		D0F572D03057E590008AB4ED /* Lab1 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D0F572F43057E591008AB4ED /* Build configuration list for PBXNativeTarget "CalcuN2" */;
+			buildConfigurationList = D0F572F43057E591008AB4ED /* Build configuration list for PBXNativeTarget "Lab1" */;
 			buildPhases = (
 				D0F572CD3057E590008AB4ED /* Sources */,
 				D0F572CE3057E590008AB4ED /* Frameworks */,
@@ -110,16 +110,16 @@
 			fileSystemSynchronizedGroups = (
 				D0F572D33057E590008AB4ED /* CalcuN2 */,
 			);
-			name = CalcuN2;
+			name = Lab1;
 			packageProductDependencies = (
 			);
 			productName = CalcuN2;
-			productReference = D0F572D13057E590008AB4ED /* CalcuN2.app */;
+			productReference = D0F572D13057E590008AB4ED /* Lab1.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D0F572DF3057E591008AB4ED /* CalcuN2Tests */ = {
+		D0F572DF3057E591008AB4ED /* Lab1Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D0F572F73057E591008AB4ED /* Build configuration list for PBXNativeTarget "CalcuN2Tests" */;
+			buildConfigurationList = D0F572F73057E591008AB4ED /* Build configuration list for PBXNativeTarget "Lab1Tests" */;
 			buildPhases = (
 				D0F572DC3057E591008AB4ED /* Sources */,
 				D0F572DD3057E591008AB4ED /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				D0F572E33057E591008AB4ED /* CalcuN2Tests */,
 			);
-			name = CalcuN2Tests;
+			name = Lab1Tests;
 			packageProductDependencies = (
 			);
 			productName = CalcuN2Tests;
-			productReference = D0F572E03057E591008AB4ED /* CalcuN2Tests.xctest */;
+			productReference = D0F572E03057E591008AB4ED /* Lab1Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D0F572E93057E591008AB4ED /* CalcuN2UITests */ = {
+		D0F572E93057E591008AB4ED /* Lab1UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D0F572FA3057E591008AB4ED /* Build configuration list for PBXNativeTarget "CalcuN2UITests" */;
+			buildConfigurationList = D0F572FA3057E591008AB4ED /* Build configuration list for PBXNativeTarget "Lab1UITests" */;
 			buildPhases = (
 				D0F572E63057E591008AB4ED /* Sources */,
 				D0F572E73057E591008AB4ED /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				D0F572ED3057E591008AB4ED /* CalcuN2UITests */,
 			);
-			name = CalcuN2UITests;
+			name = Lab1UITests;
 			packageProductDependencies = (
 			);
 			productName = CalcuN2UITests;
-			productReference = D0F572EA3057E591008AB4ED /* CalcuN2UITests.xctest */;
+			productReference = D0F572EA3057E591008AB4ED /* Lab1UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D0F572CC3057E590008AB4ED /* Build configuration list for PBXProject "CalcuN2" */;
+			buildConfigurationList = D0F572CC3057E590008AB4ED /* Build configuration list for PBXProject "Lab1" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D0F572D03057E590008AB4ED /* CalcuN2 */,
-				D0F572DF3057E591008AB4ED /* CalcuN2Tests */,
-				D0F572E93057E591008AB4ED /* CalcuN2UITests */,
+				D0F572D03057E590008AB4ED /* Lab1 */,
+				D0F572DF3057E591008AB4ED /* Lab1Tests */,
+				D0F572E93057E591008AB4ED /* Lab1UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		D0F572E23057E591008AB4ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D0F572D03057E590008AB4ED /* CalcuN2 */;
+			target = D0F572D03057E590008AB4ED /* Lab1 */;
 			targetProxy = D0F572E13057E591008AB4ED /* PBXContainerItemProxy */;
 		};
 		D0F572EC3057E591008AB4ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D0F572D03057E590008AB4ED /* CalcuN2 */;
+			target = D0F572D03057E590008AB4ED /* Lab1 */;
 			targetProxy = D0F572EB3057E591008AB4ED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -467,7 +467,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CalcuN2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CalcuN2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lab1.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lab1";
 			};
 			name = Debug;
 		};
@@ -488,7 +488,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CalcuN2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CalcuN2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lab1.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lab1";
 			};
 			name = Release;
 		};
@@ -533,7 +533,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D0F572CC3057E590008AB4ED /* Build configuration list for PBXProject "CalcuN2" */ = {
+		D0F572CC3057E590008AB4ED /* Build configuration list for PBXProject "Lab1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0F572F23057E591008AB4ED /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D0F572F43057E591008AB4ED /* Build configuration list for PBXNativeTarget "CalcuN2" */ = {
+		D0F572F43057E591008AB4ED /* Build configuration list for PBXNativeTarget "Lab1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0F572F53057E591008AB4ED /* Debug */,
@@ -551,7 +551,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D0F572F73057E591008AB4ED /* Build configuration list for PBXNativeTarget "CalcuN2Tests" */ = {
+		D0F572F73057E591008AB4ED /* Build configuration list for PBXNativeTarget "Lab1Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0F572F83057E591008AB4ED /* Debug */,
@@ -560,7 +560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D0F572FA3057E591008AB4ED /* Build configuration list for PBXNativeTarget "CalcuN2UITests" */ = {
+		D0F572FA3057E591008AB4ED /* Build configuration list for PBXNativeTarget "Lab1UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0F572FB3057E591008AB4ED /* Debug */,
