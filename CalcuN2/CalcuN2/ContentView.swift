@@ -6,56 +6,47 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @State private var numberInput: String = ""
+    
+    // Tính n^2 từ dữ liệu nhập vào
+    private var resultText: String {
+        guard let n = Double(numberInput) else {
+            return numberInput.isEmpty ? "Number pls" : "this is not a number"
+        }
+        
+        let squared = pow(n, 2)
+        return "Kết quả: \(squared)"
+    }
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
+        VStack(spacing: 20) {
+            Text("Power 2 (n^2)")
+                .font(.title)
+                .bold()
+            
+            TextField(" ", text: $numberInput)
+                .keyboardType(.decimalPad)
+                .textFieldStyle(.roundedBorder)
+                .padding(.horizontal)
+            
+            Text(resultText)
+                .font(.title2)
+                .foregroundColor(.blue)
+                .padding()
+            
+            Button("<-") {
+                numberInput = ""
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+            .buttonStyle(.borderedProminent)
+            .tint(.red)
+            .disabled(numberInput.isEmpty)
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
+        .padding()
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
