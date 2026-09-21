@@ -1,19 +1,45 @@
 import SwiftUI
+import MapKit
 
-// MARK: - Model
+// MARK: - Model (Struct)
 struct CustomButtonItem: Identifiable, Hashable {
     let id = UUID()
     var title: String
     var iconName: String
-    var xValue: Double
-    var yValue: Double
+    var xValue: Double // Kinh độ (Longitude)
+    var yValue: Double // Vĩ độ (Latitude)
+    
+    // Tự động quy đổi X, Y sang Tọa độ GPS (Tự động lấy vị trí mặc định nếu X, Y = 0)
+    var coordinate: CLLocationCoordinate2D {
+        let lat = (yValue >= -90 && yValue <= 90 && yValue != 0) ? yValue : 10.7769 // Vĩ độ mặc định (TP.HCM)
+        let lon = (xValue >= -180 && xValue <= 180 && xValue != 0) ? xValue : 106.7009 // Kinh độ mặc định
+        return CLLocationCoordinate2D(latitude: lat, longitude: lon)
+    }
 }
 
 // MARK: - Main Screen
 struct ContentView: View {
-    @State private var buttonList: [CustomButtonItem] = []
     @State private var selectedItem: CustomButtonItem? = nil
-
+    @State private var buttonList: [CustomButtonItem] = [
+        CustomButtonItem(
+            title: "Đại học Quốc tế",
+            iconName: "building.columns.fill",
+            xValue: 106.8016,
+            yValue: 10.8775
+        ),
+        CustomButtonItem(
+            title: "KTX Khu A ĐHQG",
+            iconName: "house.lodge.fill",
+            xValue: 106.8073,
+            yValue: 10.8775
+        ),
+        CustomButtonItem(
+            title: "Bcons Suối Tiên",
+            iconName: "building.2.fill",
+            xValue: 106.8090,
+            yValue: 10.8759
+        )
+    ]
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -40,7 +66,7 @@ struct ContentView: View {
                             ForEach(buttonList) { item in
                                 SwipeableCardView(
                                     item: item,
-                                    onTap: { selectedItem = item },
+                                    onTap: { selectedItem = item }, // Mở màn hình Map riêng
                                     onDelete: { deleteItem(item) }
                                 )
                             }
@@ -73,13 +99,22 @@ struct ContentView: View {
             }
             .navigationTitle("My Buttons")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                // Nút xem tổng quan tất cả tọa độ trên bản đồ
+                if !buttonList.isEmpty {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink(destination: AllButtonsMapView(buttons: buttonList)) {
+                            Image(systemName: "map.fill")
+                                .font(.system(size: 18, weight: .semibold))
+                        }
+                    }
+                }
+            }
             .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
-            .alert(item: $selectedItem) { item in
-                Alert(
-                    title: Text(item.title),
-                    message: Text("Tọa độ X: \(String(format: "%.2f", item.xValue))\nTọa độ Y: \(String(format: "%.2f", item.yValue))"),
-                    dismissButton: .default(Text("Đóng"))
-                )
+            
+            // MARK: - Chuyển sang cửa sổ Bản đồ khi bấm chọn Nút
+            .navigationDestination(item: $selectedItem) { item in
+                ButtonMapView(item: item)
             }
         }
     }
@@ -91,7 +126,117 @@ struct ContentView: View {
     }
 }
 
-// MARK: - Card với hiệu ứng Nút Delete bự ra từ từ
+// MARK: - Cửa sổ Bản Đồ Đơn (Chi tiết 1 Nút)
+struct ButtonMapView: View {
+    let item: CustomButtonItem
+    @State private var position: MapCameraPosition
+    
+    init(item: CustomButtonItem) {
+        self.item = item
+        _position = State(initialValue: .region(
+            MKCoordinateRegion(
+                center: item.coordinate,
+                span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+            )
+        ))
+    }
+    
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            Map(position: $position) {
+                Annotation(item.title, coordinate: item.coordinate) {
+                    VStack(spacing: 4) {
+                        Image(systemName: item.iconName)
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(10)
+                            .background(Color.accentColor)
+                            .clipShape(Circle())
+                            .shadow(color: .black.opacity(0.2), radius: 6, x: 0, y: 3)
+                        
+                        Image(systemName: "triangle.fill")
+                            .font(.system(size: 10))
+                            .foregroundColor(.accentColor)
+                            .offset(y: -6)
+                            .rotationEffect(.degrees(180))
+                    }
+                }
+            }
+            .ignoresSafeArea(edges: .bottom)
+            
+            // Khung thông tin tọa độ hiển thị ở bên dưới
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 12) {
+                    Image(systemName: item.iconName)
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.primary)
+                        .frame(width: 44, height: 44)
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .clipShape(Circle())
+                    
+                    Text(item.title)
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.primary)
+                }
+                
+                Divider()
+                
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("KINH ĐỘ (X)")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(.secondary)
+                        Text("\(String(format: "%.4f", item.xValue))")
+                            .font(.system(size: 16, weight: .semibold))
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("VĨ ĐỘ (Y)")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(.secondary)
+                        Text("\(String(format: "%.4f", item.yValue))")
+                            .font(.system(size: 16, weight: .semibold))
+                    }
+                }
+            }
+            .padding(20)
+            .background(Color(UIColor.systemBackground))
+            .cornerRadius(24)
+            .shadow(color: Color.black.opacity(0.08), radius: 12, x: 0, y: 4)
+            .padding(.horizontal, 24)
+            .padding(.bottom, 24)
+        }
+        .navigationTitle("Vị Trí Bản Đồ")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+// MARK: - Cửa sổ Bản Đồ Tổng Khái (Hiển thị tất cả Nút)
+struct AllButtonsMapView: View {
+    let buttons: [CustomButtonItem]
+    
+    var body: some View {
+        Map {
+            ForEach(buttons) { item in
+                Annotation(item.title, coordinate: item.coordinate) {
+                    Image(systemName: item.iconName)
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(8)
+                        .background(Color.primary)
+                        .clipShape(Circle())
+                        .shadow(radius: 4)
+                }
+            }
+        }
+        .navigationTitle("Tất Cả Vị Trí")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+// MARK: - Thẻ Card tự tạo (Kèm hiệu ứng Delete bự ra)
 struct SwipeableCardView: View {
     let item: CustomButtonItem
     let onTap: () -> Void
@@ -102,7 +247,7 @@ struct SwipeableCardView: View {
     
     var body: some View {
         ZStack(alignment: .trailing) {
-            // Nút Delete phía sau: Dãn to rộng ra theo lực vuốt ngón tay
+            // Nút Delete phía sau: Dãn to theo lực vuốt ngón tay
             HStack(spacing: 0) {
                 Spacer()
                 if offset < 0 {
@@ -110,9 +255,7 @@ struct SwipeableCardView: View {
                         Image(systemName: "trash.fill")
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.white)
-                            // Biểu tượng phóng to từ từ theo độ vuốt
                             .scaleEffect(min(1.1, max(0.5, -offset / 70)))
-                            // Chiều rộng nút mở rộng trực tiếp theo lực kéo ngón tay 👈
                             .frame(width: max(0, -offset))
                             .frame(maxHeight: .infinity)
                             .background(Color.red)
@@ -141,8 +284,8 @@ struct SwipeableCardView: View {
                 }
                 Spacer()
                 
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .semibold))
+                Image(systemName: "map")
+                    .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(Color(UIColor.tertiaryLabel))
             }
             .padding(16)
@@ -158,7 +301,7 @@ struct SwipeableCardView: View {
                             isSwiped = false
                         }
                     } else {
-                        onTap()
+                        onTap() // Mở cửa sổ Bản Đồ
                     }
                 }
             )
@@ -166,24 +309,19 @@ struct SwipeableCardView: View {
                 DragGesture(minimumDistance: 15)
                     .onChanged { gesture in
                         if gesture.translation.width < 0 {
-                            // Vuốt sang trái: Kéo dãn nút Delete
                             offset = isSwiped ? gesture.translation.width - 85 : gesture.translation.width
                         } else if isSwiped && gesture.translation.width > 0 {
-                            // Vuốt thu lại sang phải
                             offset = gesture.translation.width - 85
                         }
                     }
                     .onEnded { gesture in
                         withAnimation(.spring(response: 0.35, dampingFraction: 0.68)) {
                             if offset < -140 {
-                                // Nếu vuốt kéo dãn quá đà -> Xoá luôn lập tức
                                 onDelete()
                             } else if offset < -45 {
-                                // Khung dừng mặc định để bấm nút Delete
                                 offset = -85
                                 isSwiped = true
                             } else {
-                                // Thu về vị trí cũ
                                 offset = 0
                                 isSwiped = false
                             }
@@ -251,9 +389,9 @@ struct AddButtonView: View {
                         }
                     }
 
-                    // 3. Nhập Tọa Độ
+                    // 3. Nhập Tọa Độ GPS (X: Kinh độ, Y: Vĩ độ)
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("TỌA ĐỘ")
+                        Text("TỌA ĐỘ GPS (X: KINH ĐỘ, Y: VĨ ĐỘ)")
                             .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.secondary)
                         
@@ -262,7 +400,7 @@ struct AddButtonView: View {
                                 Text("X:")
                                     .foregroundColor(.secondary)
                                     .font(.system(size: 16, weight: .semibold))
-                                TextField("0.0", text: $xInput)
+                                TextField("106.7009", text: $xInput)
                                     .keyboardType(.decimalPad)
                             }
                             .padding(16)
@@ -273,7 +411,7 @@ struct AddButtonView: View {
                                 Text("Y:")
                                     .foregroundColor(.secondary)
                                     .font(.system(size: 16, weight: .semibold))
-                                TextField("0.0", text: $yInput)
+                                TextField("10.7769", text: $yInput)
                                     .keyboardType(.decimalPad)
                             }
                             .padding(16)
