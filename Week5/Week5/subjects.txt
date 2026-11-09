@@ -1,0 +1,6 @@
+ID,Name,Semester
+SUB201,Lap trinh Swift,HK1-2026
+SUB202,Co so du lieu,HK1-2026
+SUB203,Phat trien Ung dung Mobile,HK1-2026
+SUB204,Cau truc du lieu,HK1-2026
+SUB205,Mang may tinh,HK1-2026

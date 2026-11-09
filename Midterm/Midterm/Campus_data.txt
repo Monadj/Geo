@@ -1,0 +1,12 @@
+# ID|Name|Code|Category|Latitude|Longitude|Description
+UIT|Đại học Công nghệ Thông tin|UIT|Trường Đại Học|10.870020|106.803060|Trường thành viên chuyên đào tạo CNTT & Truyền thông thuộc ĐHQG-HCM.
+USSH|Đại học Khoa học Xã hội & Nhân văn|USSH|Trường Đại Học|10.872150|106.802100|Cơ sở Thủ Đức chuyên đào tạo các khối ngành khoa học xã hội và nhân văn.
+HCMUT|Đại học Bách Khoa (CS2)|HCMUT|Trường Đại Học|10.880120|106.805400|Cơ sở 2 của trường Đại học Bách Khoa tại khu đô thị Đại học Quốc gia TP.HCM.
+UIM|Đại học Quốc Tế (IU)|UI|Trường Đại Học|10.870300|106.802800|Trường đại học công lập đa ngành đầu tiên giảng dạy hoàn toàn bằng tiếng Anh.
+HCMUS|Đại học Khoa học Tự nhiên (CS2)|US|Trường Đại Học|10.876500|106.800200|Khu thí nghiệm và cơ sở đào tạo của Đại học Khoa học Tự nhiên.
+AGU|Khoa Y - ĐHQG-HCM|MED|Trường Đại Học / Khoa|10.868900|106.804100|Đơn vị đào tạo khối ngành sức khỏe trực thuộc Đại học Quốc gia TP.HCM.
+KTXA|KTX Khu A ĐHQG-HCM|KTX-A|Ký Túc Xá|10.878200|106.806300|Khu ký túc xá sinh viên lớn tập trung nhiều dịch vụ tiện ích, cửa hàng tiện lợi.
+KTXB|KTX Khu B ĐHQG-HCM|KTX-B|Ký Túc Xá|10.883500|106.781800|Khu ký túc xá hiện đại, quy mô lớn với đầy đủ khu phức hợp thể thao, nhà ăn.
+BCONS|Bcons Suối Tiên (45 Tân Lập)|BCONS|Căn hộ / Tiện ích|10.875300|106.800900|Khu căn hộ dịch vụ tiện ích nằm sát trục đường chính đi vào Làng Đại học.
+LIBRARY|Thư viện Trung tâm ĐHQG-HCM|LIB|Tiện ích chung|10.871800|106.804500|Thư viện trung tâm hiện đại phục vụ học tập và nghiên cứu cho sinh viên toàn ĐHQG.
+GHOST|Nhà điều hành ĐHQG-HCM|HQ|Hành chính|10.871200|106.803800|Trung tâm điều hành và quản lý hành chính toàn hệ thống Đại học Quốc gia TP.HCM.
